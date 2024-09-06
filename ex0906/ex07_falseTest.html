@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>자바스크립트에서 false</h1>
+    <script>
+        /*
+        자바스크립트에서는 7개 
+        0,-0,undefined,NaN,"",false,null 
+        모두 조건문에서 false로 처리된다
+        */
+
+
+
+        //함수작성
+        function test(name)
+        {
+            //alter(`$(name)님 반가워요`);
+            //if(name!=undefined && name!="")
+            // if(name)//true일 때만 
+            // {
+            //     console.log(name+"님 반가워요");
+            // }
+            // else
+            // {
+            //     console.log("잘못된 이름입니다");
+            // }
+            name && console.log(name+" 님 반가워요");
+            //유효하지 않은 값들만 아니라면 true로 반환
+        }
+
+        //함수호출해보자
+        //test("희정");
+        let inputName="hello"; // NaN,0,null,""->모두  fals로 처리
+        test(inputName);
+    </script>
+</body>
+</html>

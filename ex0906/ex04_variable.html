@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>변수에 대해 알아보자-var vs let vs const</h1>
+    <script>
+        var a;
+        var b=10;
+        var c="희정";
+        d=3.14;
+        // var 키워드 전역변수에서는 생략 가능
+        document.write("<h3>");
+        document.write("a = "+a+" , "+(typeof a)+"<br>");
+        document.write("b = "+b+" , "+(typeof b)+"<br>");
+        document.write("c = "+c+" , "+(typeof c)+"<br>");
+        document.write("d = "+d+" , "+(typeof d)+"<hr>");
+        
+        
+        //값변경, new 를 사용하면 모두 object타입, char이 없고 string만 있어
+        a=new String("되나?");
+        b='안녕';
+        c=new Array(1,"hi",4.5,true);
+        d=false;
+        document.write("a = "+a+" , "+(typeof a)+"<br>");
+        document.write("b = "+b+" , "+(typeof b)+"<br>");
+        document.write("c = "+c+" , "+(typeof c)+"<br>");
+        document.write("d = "+d+" , "+(typeof d)+"<hr>");
+
+        /*
+        1. 동일한 이름의 변수를 선언하면? 호이스팅 때문에 중복된 변수 이름 가능
+        2. 변수 선언 전에 사용하면 어떻게 될까?
+        1,2 번 모두 성공
+        자바스크립트에서는 호이스팅이라는 개념이 있기 때문
+        호이스팅이란 변수, 함수를 미리 선언부 맨위로 끌어 올린다
+        */
+        var a="ok";
+        document.write("a = "+a+" , "+(typeof a)+"<br>");
+
+        //선언 전 사용-ok
+        document.write("addr = "+addr+" , "+(typeof addr)+"<br>");
+        
+        //함수 호출
+        test();
+        test2();
+
+        var addr="서울";//어딘가에 변수가 선언되었다면 사용이 가능하다. 사용되는 함수가 더 위에 있어도 ok
+        document.write("</h3>");
+        
+
+
+        function test()
+        {
+            alert("1-호출");
+        }
+        function test()
+        {
+            //alert("2-호출 "+i);
+            if(true)
+            {
+                var i=10;//지역변수
+                //  var를 생략하면 전역변수가 된다
+            }
+            alert("i= "+i);//자바스크립트에서 var 지역변수의 scope는 함수단위, 블록{} 단위가 아니다
+        }
+
+        function test2()
+        {
+            alert("test2 의 i= "+i);
+        }
+
+    </script>
+    
+</body>
+</html>

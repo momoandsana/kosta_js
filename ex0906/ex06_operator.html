@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>연산자 알아보자</h1>
+    <script>
+        let i=10;
+        let j="10";
+        document.write("<h3>");
+        //템플릿 문자열 
+        document.write(`i = ${i}, type=${typeof i}<br>`);
+        document.write(`j = ${j}, type=${typeof j}<br>`);
+
+        document.write(`${i}==${j} -> ${i==j}<br>`);
+        document.write(`${i}===${j} -> ${i===j}<br>`);
+
+        document.write(`${i}!=${j} -> ${i!=j}<br>`);
+        document.write(`${i}!==${j}->${i!==j}<hr>`);
+
+        /*
+            alert() / prompt() / confirm() ->함수인데 ~.생략된 경우는 모두 윈도우
+            객체가 가지고 있는 속성이나 함수이다
+
+            1)window.parseInt()
+            2)Number()
+
+            3) isNan // is not a number
+
+        */
+        let data="a100";
+        document.write(`data = ${data} type = ${typeof data}<hr>`);
+        
+        document.write(`parseInt(data) = ${parseInt(data)}<br>`);//NaN
+        document.write(`Number(data)=${Number(data)}<hr>`);//NaN
+
+        //형변환
+        data="200a";
+        document.write(`parseInt(data) = ${parseInt(data)}<br>`);//200출력. a가 나오기 전까지 숫자로 변환
+        document.write(`Number(data)=${Number(data)}<br>`);//NaN
+        document.write("</h3>");
+
+        if(isNaN(data)) //숫자가 아니니?
+        {
+            console.log("1");
+        }
+        else
+        {
+            console.log("2");
+        }
+
+        let a=10,b="3";
+        document.write(`a+b=${a+b}<br>`);
+        document.write(`a-b=${a-b}<br>`);
+        document.write(`a*b=${a*b}<br>`);
+        document.write(`a/b=${a/b}<br>`);
+        // 출력결과:
+        // a+b=103 string형식으로 변환 되어서 더해짐. 숫자로 더하고 싶다면 파싱해야 함
+        // a-b=7
+        // a*b=30
+        // a/b=3.3333333333333335
+        
+        /*
+        1.alert() : 메시지 출력
+        2. prompt() : 사용자 입력창
+        3. confirm() : 의사를 묻는 창
+        */
+        let result=window.prompt("나이는?",20);
+        // 결과는 무조건 스트링인 형식임
+        document.write(`<hr> 결과 : ${result}<br>`);
+        document.write(`<hr> 결과 : ${result+1}<br>`);
+        document.write(`<hr> 결과 : ${result-1}<br>`);
+
+
+        result=confirm("쉬고싶어요?");
+        //confirm은 boolean 형태로 받음. 결과는 boolean형이다
+        document.write(`<hr> 결과 ${result}<br>`);
+
+    </script>
+</body>
+</html>

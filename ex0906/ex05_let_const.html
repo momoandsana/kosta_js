@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>변수에 대해 알아보자-var vs let vs const</h1>
+    <script>
+        let a;
+        let b=10;
+        let c="희정";
+        d=3.14;
+        // var 키워드 전역변수에서는 생략 가능
+        document.write("<h3>");
+        document.write("a = "+a+" , "+(typeof a)+"<br>");
+        document.write("b = "+b+" , "+(typeof b)+"<br>");
+        document.write("c = "+c+" , "+(typeof c)+"<br>");
+        document.write("d = "+d+" , "+(typeof d)+"<hr>");
+        
+        /*
+            let으로 변수를 선언하면
+            선언하기 전에 변수를 사용할 수 없다
+            동일한 이름 두 번 선언 안 된다
+            scope이 블록단위이다
+        */
+
+        /*
+            ex05_let_const.html:32 Uncaught ReferenceError: Cannot access 'addr' before initialization
+            at ex05_let_const.html:32:34
+            let으로 호이스팅은 되지만 값을 할당하기 전에는 사용 불가
+        */
+        // document.write("addr = "+addr+" , "+(typeof addr)+"<hr>");
+        // let addr="서울";
+        test();
+
+        function test()
+        {   
+            console.log("test() 호출됨");
+            if(true)
+            {
+                let phone='1234';
+            }
+            //console.log(phone);
+        }
+
+        //fun();
+        // let으로 선언된 함수이므로 선언 전에 호출 불가
+        let fun=function aa(){
+            alert("aa()호출됨...");
+        };
+
+        //상수
+        const age=10;
+        console.log("age = "+age);
+        age=20;
+
+    </script>
+    
+</body>
+</html>
