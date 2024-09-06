@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.write("<table>");
+        document.write("<tr>");
+    
+        document.write("</tr>");
+        for(let i=2;i<9;i++)
+        {
+            document.write(` ${i} 단`);
+            document.write("<td>");
+            for(let j=1;j<=9;j++)
+            {
+                document.write(` ${i} * ${j}=${i*j} `);
+            }
+            document.write("</td>");
+        }
+
+
+
+
+
+        document.write("</table>");
+    </script>
+    <table>
+        
+    
+</body>
+</html>
