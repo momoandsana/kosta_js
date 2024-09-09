@@ -9,6 +9,7 @@
         let test1=function(){
             alert("test1 함수 호출");
         }
+
         let test2=(th)=>//th에 this가 전달됨
         {
             alert("test2 함수 호출"+th);
@@ -16,6 +17,7 @@
             //자바스크립트에서 css적용할 때 대상.style.속성=값;
             th.style.border='double 5px red';
         }
+
         let test3=()=>
         {
             alert("test3 호출됨...");
@@ -24,12 +26,64 @@
 
             window.event.target.style.border="dashed 10px green";
         }
+
+        let test4=()=>{
+            alert("test4 call...");
+            //h3 태그에 css 적용
+            /*
+            자바스크립트에서 html의 특정 노드(element)를 찾는 방법
+            1. id로 찾기
+                document.getElementById(아이디);
+                id는 하나만 있음
+
+            2. class or 태그이름 or name이름 찾기
+                클래스 태그이름 name은 하나 이상에 적용 가능하기 때문에 리스트로 나옴
+                document.getElementsByClassName();
+                document.getElementsByTagName()
+                document.getElementsByName()
+
+            3. selector를 이용하여 element 찾는 방법 : selector는 . , # , [] , : checked , 
+                document.querySelector() : 결과는 한 개의 element만 ->id 같은 경우
+                document.querySelectorAll() : 결과는 0개 이상의 element -> class, tag, name 같이 리스트로 나오는 경우
+            */
+
+            // id로 찾기
+            //document.getElementById("a").style.border="blue double 5px"; //a는 아이디지만 #이 필요없음
+            
+            // class로 찾기
+            //document.getElementByClassName("b")[0].style.border="red dotted 5px";
+
+            // id vs class 
+            //let searchedEle=document.getElementById("a");
+            //let searchedEle=document.getElementsByClassName("b");
+            //alert(searchedEle+" , "+searchedEle.length)
+
+            let searchedEle=document.getElementsByTagName("button");
+            alert(searchedEle+" , "+searchedEle.length)
+
+            for(let i=0;i<searchedEle.length;i++) // 리스트로 나오기 때문에  반복문이 필요
+            {
+                searchedEle[i].style.color="red";
+            }
+        }
+
+        let test5=()=>
+        {
+            //특정 element를 select로 찾아보기
+            document.querySelector("#a").style.color="blue"; // id로 찾는 경우 #이 필요
+            document.querySelector("button").style.color="red"; // 첫 번째 버튼만 적용
+
+            document.querySelectorAll("button")[2].style.color="orange"; // 하나 이상이기 때문에 모두에게 적용하고 싶으면 반복문을 돌려야 함
+        }
+
     </script>
 </head>
 <body>
-    <h3>이벤트를 등록해보자 - 태그의 속성으로 on이벤트 종류="함수이름()"</h3>
-    <button onclick="test1()">클릭1</button>
-    <button onclick="test2(this)">클릭2</button>
+    <h3 id="a" class="b">이벤트를 등록해보자 - 태그의 속성으로 on이벤트 종류="함수이름()</h3>
+    <button onclick="test1()" class="b" name="btn">클릭1</button>
+    <button onclick="test2(this)" name="btn">클릭2</button>
     <button onclick="test3()">클릭3</button>
+    <button onclick="test4()">클릭4</button>
+    <button onclick="test5()">클릭5</button>
 </body>
 </html>
