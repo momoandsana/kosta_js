@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //함수 호출해보자
+        test3(); // 인수 전달 x
+        test3("희정");
+        /*
+        함수 선언방법
+        1. 선언적 함수 !!
+        2. 함수표현식
+        3. 화살표 함수
+        4. 콜백 함수
+        */
+
+        // 1. 선언적 함수
+        function test1()
+        {
+            console.log("test1 call");
+            document.write("test1 call<br>");
+        }
+
+        function test2(a,b) // 매개변수=인수 2개가 전달된다
+        {
+            console.log("test2 call");
+            document.write(`test2 a=${a},b=${b}<br>`);
+        }
+
+        function test3()
+        {
+            //기능
+            console.log("test3의 첫 번째..");
+            return 10; // 
+        }
+
+        // 동일한 이름의 함수를 만들어보자
+        // function test3(name)
+        // {
+        //     console.log("test3의 두 번째..");
+        // }
+
+        //함수 호출해보자
+        // 중복된 함수는 무조건 한 개로 인식한다. 오바로딩이 되지 않는다. 매개변수,인수의 개수는 상관이 없다
+        // test3(); // 인수 전달 x
+        // test3("희정");
+
+        //매개변수 전달..
+        test1();
+        test1(10,"안녕");
+
+        test2(10);
+        test2(10,"안녕");
+        test2(10,"안녕",true);
+        /*
+        <출력 결과>
+        test1 call
+        test1 call
+        test2 a=10,b=undefined
+        test2 a=10,b=안녕
+        test2 a=10,b=안녕
+        */
+
+
+
+        //리턴값
+        let result=test3();
+        console.log("결과 = "+result);
+
+    </script>
+    
+</body>
+</html>

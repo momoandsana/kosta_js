@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            함수 선언방법
+            1. 선언적 함수
+            2. 함수표현식 !!
+            3. 화살표 함수
+            4. 콜백 함수
+        */
+       //test2() 함수 표현식으로는 함수 호출 불가능
+
+        //함수 표현식으로 함수 만들어보자
+        /*
+        함수 표현식으로 접근 불가능
+        */
+        let test1=function aa()
+        {
+            console.log("test1에 저장한 aa() call");
+        }
+
+
+        //익명 함수->함수 표현식의 한 종류
+        let test2=function(){
+            console.log("test2에 저장한 함수 call");
+        }
+
+        let test3=function(a,b)
+        {   
+            // document.write(`a=${a},b=${b}<br>`);
+            // return a+b;
+            if(isNaN(a) || isNaN(b))
+            {
+                return "더하기 불가능";
+            }
+            else return a+b;
+        }
+
+
+        //함수 호출해보자
+        //aa(); 함수 표현식에서 함수이름을 사용할 수 없다
+        //test1();
+        test2();//익명함수 호출
+        
+        //인수전달+리턴
+        //let re=test3();
+        //let re=test3(5,"dd");
+        let re=test3(5,"ll");
+        let re2=test3(5,3);
+        document.write("결과 = "+re);
+        document.write("<br>결과 = "+re2);
+        /*
+        <출력 결과>
+        결과 = 더하기 불가능
+        결과 = 8
+        */
+    </script>
+</body>
+</html>

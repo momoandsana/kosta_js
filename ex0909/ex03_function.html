@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            함수 선언방법
+            1. 선언적 함수
+            2. 함수표현식 
+            3. 화살표 함수 !!
+            4. 콜백 함수
+        */
+        
+        /*
+        arrow 함수 작성법
+            ()=>{기능 };
+            (a,b)=>{기능};
+            ()=>기능; 기능이 한 문장일 때 중괄호 생략 가능
+            ()=>기능; 이 함수 return 이 있는 함수일 때 return 문장을 생략해도 그 한 문장이 return 문장이 된다
+        */
+
+        let test1=()=>
+        {
+            console.log("test1에 저장한 aa() call");
+        }
+
+
+        
+        let test2=()=>console.log("test2에 저장한 함수 call");
+        
+
+        let test3=(a,b)=>
+        {   
+            // document.write(`a=${a},b=${b}<br>`);
+            // return a+b;
+            if(isNaN(a) || isNaN(b))
+            {
+                return "더하기 불가능";
+            }
+            else return a+b;
+        }
+
+        let test4=(a,b)=>{return a*b;};
+
+        let test5=(a,b)=>a-b;
+        //굳이 return 하지 않아도 자동으로 return 해줌. 중괄호 있으면 안 된다
+
+       //함수 호출  해보기
+       test1();
+       
+       test2();
+       
+       let re=test3(5,2);//반환값이 있으므로 받아줘야 함
+       console.log(re);
+       
+       let re2=test5(5,2);
+       console.log(re2);
+
+       let re3=test4(5,2);
+       console.log(re3);
+    </script>
+</body>
+</html>

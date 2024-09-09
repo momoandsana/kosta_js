@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            함수 선언방법
+            1. 선언적 함수
+            2. 함수표현식 
+            3. 화살표 함수 
+            4. 콜백 함수 !!
+        */
+
+        /*
+        callback 함수 : 매개변수로 함수를 전달하는 것, 
+        즉 자신이 아닌 다른 함수에 인수로 전달하는 것
+        */
+
+        //덧셈기능
+        let add=(a,b)=>{
+            return a+b;
+        }
+
+        //빼기기능
+        let minus=(a,b)=>a-b;
+
+        //출력기능
+        // let print=(a,b,operator)=>{//operator가 연산기호(+,-,*,/,...)
+        //     let result;
+        //     if(operator==="+")
+        //     {
+        //         result = add(a,b);
+        //     }
+        //     else if(operator==="-")
+        //     {
+        //         result=minus(a,b);
+        //     }
+        //     console.log("연산결과 : "+result);
+        // }
+
+        // //함수호출해보자
+        // print(5,3,"+");
+        // console.log("------------");
+        // print(5,3,"-")
+
+        /////////////////////////////////////////////////////
+        //print함수에 콜백함수를 전달해보자
+        let print=(a,b,operator)=>{//operator는 함수가 전달된다
+            let result=operator(a,b); //전달된 함수를 호출한다
+          
+            console.log("연산결과 : "+result);
+        }
+
+        //함수를 매개변수를 전달하면서 함수를 호출해보자
+        print(5,3,add);
+        print(5,3,minus);
+        print(5,3,function(a,b){return a*b;});
+        print(5,3,(a,b)=>a/b);
+
+    </script>
+</body>
+</html>

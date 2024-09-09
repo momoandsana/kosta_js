@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //함수 작성
+        let test1=function(){
+            alert("test1 함수 호출");
+        }
+        let test2=(th)=>//th에 this가 전달됨
+        {
+            alert("test2 함수 호출"+th);
+            //버튼에 border css적용하고 싶다
+            //자바스크립트에서 css적용할 때 대상.style.속성=값;
+            th.style.border='double 5px red';
+        }
+        let test3=()=>
+        {
+            alert("test3 호출됨...");
+            //현재 이벤트를 발생시킨 주체를 얻어와서 css를 적용하고 싶다
+            alert(window.event.target);
+
+            window.event.target.style.border="dashed 10px green";
+        }
+    </script>
+</head>
+<body>
+    <h3>이벤트를 등록해보자 - 태그의 속성으로 on이벤트 종류="함수이름()"</h3>
+    <button onclick="test1()">클릭1</button>
+    <button onclick="test2(this)">클릭2</button>
+    <button onclick="test3()">클릭3</button>
+</body>
+</html>
