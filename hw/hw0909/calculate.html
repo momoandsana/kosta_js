@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div{
+            width:200px;
+            height:150px;
+            border:1px red solid;
+            box-sizing:border-box;
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            document.getElementById("button").addEventListener("click", () => {   
+                let numFlag = true;
+                let operatorFlag = true;
+                let num1,num2,operator;
+
+                while (true) {
+                    num1 = parseFloat(window.prompt("첫 번째 숫자는?"));
+                    num2 = parseFloat(window.prompt("두 번째 숫자는?"));
+                    operator = window.prompt("연산자는?");
+
+                    if (isNaN(num1) || isNaN(num2)) {
+                        alert("숫자를 입력해주십시오");
+                        numFlag = false;
+                    } else {
+                        numFlag = true;
+                    }
+
+                    if (operator !== '+' && operator !== '-' && operator !== '*' && operator !== '/') {
+                        alert("알맞은 연산을 입력해주십시오");
+                        operatorFlag = false;
+                    } else {
+                        operatorFlag = true;
+                    }
+
+                    if (numFlag == true && operatorFlag == true) break;
+                }
+
+                let answer;
+                switch (operator) {
+                    case '+': answer = num1 + num2; break;
+                    case '-': answer = num1 - num2; break;
+                    case '*': answer = num1 * num2; break;
+                    case '/': answer = num1 / num2; break;       
+                }
+                
+              
+                document.querySelector(".div").innerHTML += (answer+="<br>");
+            });
+        }
+    </script>
+</head>
+<body>
+    <h2>계산해보자</h2>
+    <button name="button" id="button">계산</button>
+    <div id="div" class="div"></div>
+</body>
+</html>
