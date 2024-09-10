@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Math 객체</h3>
+    <script>
+        // 난수 발생
+        let nansu = Math.random();
+        document.write(`nansu : ${nansu}<br>`);
+
+        // 1~10 사이의 정수
+        let convertNum = Math.floor(nansu * 10 + 1); // 난수를 1에서 10 이하의 수로 변환
+        document.write(`convertNum : ${convertNum}<br>`);
+
+        document.write(`<h3>Array 객체</h3>`);
+        
+        // 배열 생성 방법
+        const arr1 = [];
+        const arr2 = new Array(1, true, "희정");
+        const arr3 = [2, 4, 6, 8, 3.14, true];
+        const arr4 = [[1, 3, 5], [2, 4], ["A", "B", "C", "D"]];
+
+        // 출력
+        document.write(`arr1 = ${arr1}<br>`);
+        document.write(`arr2 = ${arr2}<br>`);
+        document.write(`arr3 = ${arr3.toString()}<br>`);
+        document.write(`arr4 = ${arr4.toString()}<br>`);
+
+        // 함수를 만들어서 호출을 통해 반복문 연습
+        const print = (arrObj) => {
+            let count = arrObj.length;
+            document.write(`배열 출력해보자 count = ${count}<br>`);
+            
+            // for 루프를 이용한 배열 출력
+            for (let i = 0; i < count; i++) {
+                document.write(`${i} = ${arrObj[i]}<br>`);
+            }
+            
+            // forEach를 이용한 배열 출력
+            document.write(`forEach 사용하기 <br>`);
+            arrObj.forEach((element, index) => {//2번째 인수는 무조건 인덱스 자리 index말고 다른 이름 사용해도 인덱스 값이 들어옴
+                document.write(`${index} = ${element}<br>`);
+            });
+
+            document.write("<hr>");
+        };
+
+        // 배열 출력 함수 호출
+        print(arr1);
+        print(arr2);
+        print(arr3);
+        print(arr4);
+
+        //////////////////////////////
+        document.write("<hr>배열방에 데이터 추가(push() 뒤, unshift() 앞 ), 삭제(pop() 뒤 삭제, shift() 앞 삭제)</hr>");        
+        
+        // 배열에 데이터 추가(push(), unshift())와 삭제(pop(), shift())
+        arr2.push("추가"); // 뒤에 추가
+        document.write(arr2 + "<br>");
+        
+        arr2.pop(); // 뒤에서 삭제
+        arr2.shift(); // 앞에서 삭제
+
+        arr2[1] = "쉬어요"; // 값 변경
+        document.write(arr2 + "<br>");
+
+    </script>
+</body>
+</html>

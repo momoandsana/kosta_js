@@ -30,6 +30,7 @@
                     document.getElementById("div").innerHTML+=(text.value+"<br>");
                     text.value="";
                 }
+                input.focus();
             });
 
         }
@@ -37,7 +38,7 @@
 </head>
 <body>
     <h2>JavaScript에서 폼 요소 접근하기</h2>
-    <form>
+    <form action="">
         입력: <input type="text" name="input" id="input"><br>
         출력: <input type="text" name="output" id="output"><br>
     </form>

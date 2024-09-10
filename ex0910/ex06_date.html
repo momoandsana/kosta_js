@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Date 객체</h3>
+    <script>
+        //const today=new Date();
+        //const today=new Date("2024-07-9");
+        const today=new Date(2024,7,9); //결국 8월 9일이 된다
+        document.write(`today = ${today}<br>`);
+        document.write(`today toLocaleString() = ${today.toLocaleString()}<br>`);
+
+        //년 월 일 요일 시 분 초
+        document.write(`년 = ${today.getFullYear()}<br>`);
+        document.write(`월 = ${today.getMonth()+1}<br>`); // 월은 0부터 시작
+        document.write(`일 = ${today.getDate()}<br>`);
+
+        const day=["일","월","화","수","목","금","토"];
+        document.write(`요일 = ${today.getDay()}<br>`); // 숫자 0은 일요일, 6은 토요일
+        document.write(`요일 = ${day[today.getDay()]}<br>`);
+        
+        document.write(`시 = ${today.getHours()}<br>`);
+        document.write(`분 = ${today.getMinutes()}<br>`);
+        document.write(`초 = ${today.getSeconds()}<br>`);
+
+        //날짜 변경
+        today.setMonth(5);//6월
+        document.write(`오늘 ${today.toLocaleString()}<br>`); //
+
+    </script>
+</body>
+</html>

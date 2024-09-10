@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Array 관련 함수</h3>
+    <script>
+        const arr1=[1,2,3];
+
+        const students =[
+	    {name:"A", age:20 , state:true , score:80},
+	    {name:"B", age:29 , state:true , score:85},
+	    {name:"C", age:22 , state:false , score:90},
+	    {name:"D", age:21 , state:true , score:45},
+	    {name:"E", age:28 , state:false , score:95},
+         ];
+
+
+        // 1. includes() : 배열에서 인수의 값이 있는지 없는지 결과를 boolean 으로 리턴
+        let re=arr1.includes(2);
+        console.log("결과 : "+re);
+
+        // 2. indexOf() : 특정 요소의 인덱스를 찾아서 반환
+        re=arr1.indexOf(2);
+        console.log("결과 : "+re);
+
+        // 3. findIndex() : 모든 요소를 순회하면서 콜백함수를 만족하는 
+        re=arr1.findIndex((element)=>{
+            if(element===2)return true;
+
+        });
+        console.log("결과 : "+re);
+
+        // students에서 age가 29인 학생의 위치(index)
+        re=students.findIndex((student)=>{
+            if(student.age===29)return true;
+        });
+        console.log("결과: "+re);
+
+        // 4. find():모든 요소를 순회하면서 콜백함수를 만족하는 요소를 찾는데,요소를 그대로 반환->객체 자체를 반환
+        //students에서 age가 29인 학생의 정보 찾고 싶다
+        re=students.find((student)=>student.age===29);
+        console.log(re);
+
+        // 5. join() : 배열의 모든 요소를 하나의 문자열로 합쳐서 반환하는 메소드 - 결과 string
+        re=arr1.join("/"); // 인수를 전달하지 않으면 기본은 , 이다 -> 콤마를 기준으로 합쳐진다
+        console.log(re);
+
+        // 6. concat() : 두 개의 배열을 하나의 배열로 합친다 - 결과 배열 
+        const arr2=[4,6,8];
+        re=arr2.concat(arr2);
+        console.log(re); // 468468
+
+        // 7.reverse() : 배열을 뒤집어서 배열로 만들어준다
+        re=re.reverse();
+        console.log(re);
+
+        // 8.sort() : 배열을 사전적으로 정렬하는 메소드, 우리가 생각하는 정렬이랑 다를 수도
+        const arr3=["b","a","f","c"];
+        arr3.sort();
+        console.log(arr3);
+
+        const arr4=[10,5,3,7];
+        arr4.sort();
+        console.log(arr4); // 10,3,5,7 로 정렬된다 , 10의 1을 먼저 본다
+
+        arr4.sort((a,b)=>{
+            return a-b; // 음수 양수 0 -> 지금은 오름차순
+        }
+        );
+        console.log(arr4); // 3,5,7,10 
+
+        // 9. toSorted() : 원본배열은 그대로 두고 정렬된 결과를 새로운 배열로 만든다
+        const arr5=["f","a","e","c"];
+        re=arr5.toSorted();
+        console.log(arr5); // 원본
+        console.log(+re); // 정렬된 값
+        
+        /////////////////////////////////////////////////////////////////////////////////
+        //1. 점수가 90점인 학생 정보 - find()-> find는 값이 여러개가 있어도 처음에 찾은 값만 반환
+        re=students.find((student)=>{
+            return student.score>=90;
+        });
+        
+        console.log("1번 "+re);
+
+        //2.  점수가 90점인 이상인 모든 학생  - filter()
+        // filter() : 기존배열에서 조건을 만족하는 요소들만 필터링하여 새로운 배열로 반환
+        re=students.filter((student)=>{
+            return student.score>=90;
+        });
+
+        console.log("2번 "+re);
+
+        //3. 수강중(state-true) 학생들만 골라서 배열로 만들기. - filter()
+        re=students.filter((student)=>student.state);
+        console.log("3번 "+re);
+
+        //4.학생 배열에서 점수만 뽑아서 배열로 만들기 - map() 
+        re=students.map((student)=>student.score);
+        console.log("4번 "+re);
+
+        //5.학생 들중에 점수가 50점 보다 낮은 친구 있는지 없는지 체크하기-some()
+        re=students.some((student)=>{
+            return student.score<50; // boolean
+        })
+        console.log("5번 "+re);
+
+        //6. 모든 학생들의 점수가 80이상인지 체크 -every()
+        re=students.every((student)=>{
+            return student.score>=80
+        });
+        console.log("6번 "+re);
+
+        //7.학생들의 평균점수를 구하기 - reduce()
+        re=students.reduce((prev,cur)=>{
+            console.log(prev);
+            console.log(cur);
+            console.log("==========================");
+            return prev+cur.score; //다음 턴에서 prev에 담김
+        },0); // reduce()를 사용하기 위해서는 초기화 중요
+
+        console.log("총점 : "+re);
+        console.log("평균 : "+re/students.length);
+        
+        //8. 학생들의 모든 점수를 구해서 하나의  string으로 변환(map , join)
+        re=students.map((student)=>student.score).join(" "); // string으로 변환
+        console.log("8번 "+re);
+
+        //9. 학생들의 모든 점수를 배열로 만들어서 50점 이상인 학생들만 뽑아서 하나의 string을로 변환(map,filter,join)
+        re=students.filter((student)=>student.score>=50).map((student)=>student.score).join(" ");
+        console.log("9번 "+re);
+
+
+        //10.학생들의 점수를 정렬하기. - sort() 오름차순
+        //학생들의 점수만 추출->오름차순 정렬
+        re=students.map((student)=>student.score).sort((score1,score2)=>score1-score2);
+        console.log("10번 "+re);
+
+    </script>
+</body>
+</html>
+
+// 5. 학생들 중에 점수가 50점보다 낮은 친구 있는지 체크하기 - some()
+re = students.some((student) => student.score < 50);
+console.log(re);  // 결과: true
+
+// 6. 모든 학생들의 점수가 80 이상인지 체크 - every()
+re = students.every((student) => student.score >= 80);
+console.log(re);  // 결과: false
+
+// 7. 학생들의 평균 점수를 구하기 - reduce()
+re = students.reduce((total, student) => total + student.score, 0) / students.length;
+console.log(re);  // 결과: 79
+
+

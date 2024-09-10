@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>String 객체</h3>
+    <script>
+        const str="abcd abcd abcd";
+        document.write(` str = ${str}<br>`);
+
+          /*
+        charAt(index) : index에 해당하는 문자를 리턴(index는 0부터시작)
+                    해당하는 index에 문자가 없으면 공백 리턴
+        */
+        let re=str.charAt(2);
+        console.log(re);
+        console.log(str.length);
+
+        /*
+        indexOf(문자열) : 문자열의 위치 index를 리턴 ,왼쪽에서 부터 찾기 
+     
+        indexOf(문자열, 시작위치) : 문자열을 시작위치에서부터 찾기  
+     
+        -문자열이 없으면 -1 리턴
+        */
+       re=str.indexOf("c");
+       console.log(re);
+
+       re=str.indexOf("c",4);
+       console.log(re);
+
+
+       /*
+        lastIndexOf(문자열) : 문자열의 위치 index를 리턴 ,오른쪽에서 부터 찾기 
+  
+        lastIndexOf(문자열, 시작위치) : 문자열을 시작위치에서부터 찾기  
+  
+        -문자열이 없으면 -1 리턴
+        */
+       re=str.lastIndexOf("c"); // 한 알파벳이 아니라 cd 같은 것도 가능함
+       console.log(re);
+
+
+       /*
+         문자열 일부분 추출하기
+        1) substring(index1 , index2)
+       : index1부터 index2까지 문자열 리턴(항상 index2는 index1보다 커야한  다.) 
+       : index1만 있으면 index1부터 끝까지 문자열 리턴
+       
+        2) substr(index, length)
+       : index부터 length만큼 문자열 리턴 
+       : index만 있으면 index부터 끝까지 문자열 리턴
+ 
+        */
+       re=str.substring(0,3);// 0 1 2 인덱스 출력
+       console.log(re);
+
+       re=str.substring(1,3); // 1 2 인덱스 출력
+       console.log(re);
+
+        re=str.substr(1,3); // 1 2 3 인덱스 출력(3개 출력)
+        console.log(re);
+
+        re=str.substr(5);
+        console.log(re);
+
+         /*
+        split("문자열") : 문자열을 기준으로 분리해서 배열로 리턴.
+        */
+       re=str.split(" ");
+       console.log(re.length);
+
+       re=str.split("c");
+       console.log(re.length);
+       console.log(re);
+
+    </script>
+</body>
+</html>

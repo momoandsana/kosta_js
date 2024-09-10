@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Object key와 value</h3>
+    <script>
+        const person={name:"희정",age:20,addr:"서울",phone:"123-1234"}
+        console.log(person.name);
+        console.log(person["age"]);
+
+        //Object.keys 를 이용해서 객체의 key들을 가지고 올 수 있다
+        let keys=Object.keys(person);
+        console.log(keys);
+
+        let values=Object.values(person);
+        console.log(values);
+
+        for(let key of keys)
+        {
+            console.log(key+" = "+person[key]);
+        }
+    </script>
+</body>
+</html>
