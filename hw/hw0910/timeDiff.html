@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <h2>두 날짜의 Gap</h2>
+    <form action="">
+        <input type="text" id="year1" style="width:100px">
+        년
+        <input type="text" id="month1" style="width:100px">
+        월
+        <input type="text" id="day1" style="width:100px">
+        일
+        ~
+        <input type="text" id="year2" style="width:100px">
+        년
+        <input type="text" id="month2" style="width:100px">
+        월
+        <input type="text" id="day2" style="width:100px">
+        일
+        <button name="button" id="button">계산하기</button>
+    </form>
+    
+
+    <script>
+        document.getElementById("button").addEventListener("click",(event)=>
+        {
+            event.preventDefault();//페이지 새로고침 방지
+            let year1=document.getElementById("year1");
+            let month1=document.getElementById("month1");
+            let day1=document.getElementById("day1");
+            const date1=new Date(year1.value,month1.value-1,day1.value);
+            //월은 0부터 시작
+
+            let year2=document.getElementById("year2");
+            let month2=document.getElementById("month2");
+            let day2=document.getElementById("day2");
+            const date2=new Date(year2.value,month2.value-1,day2.value);
+
+            const dateDiff=date2-date1;
+            //console.log(dateDiff);
+            const dayDiff=Math.ceil(dateDiff/(1000*60*60*24));
+            alert(dayDiff+"일 차이");
+        });
+
+    </script>
+
+</body>
+</html>

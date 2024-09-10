@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+       
+    <span id="timeBox" style="border : 1px solid black; width:150px; height:25px; display:inline-block"></span>
+    <button id="start">시작</button>
+    <button id="stop">중지</button>
+
+    <script>
+        //         a=new Date()
+        // h=a.getHours()
+        // m=a.getMinutes()
+        // s=a.getSeconds()
+
+        // h가 12이상이면 오후
+        // h m s가 한자리라면 두 자리로 표현
+        // a=new Date();
+        // h=a.getHours();
+        // m=a.getMinutes();
+        // s=a.getSeconds();
+
+        let timer=null;
+        const timeBox = document.getElementById('timeBox');
+
+        const updateTime=()=>
+        {
+            const a=new Date();
+            const h=String(a.getHours() % 12 ? a.getHours() % 12 : 12).padStart(2,'0');
+            const m=String(a.getMinutes()).padStart(2,'0');
+            const s=String(a.getSeconds()).padStart(2,'0');
+            const ampm = a.getHours() >= 12 ? 'PM' : 'AM';
+            timeBox.innerText=(ampm+" : "+h+" : "+m+" : "+s);
+
+        }
+
+        document.getElementById("start").addEventListener("click",() => 
+        {
+            timer=setInterval(updateTime,1000);
+            console.log("start");
+        });
+
+        document.getElementById("stop").addEventListener("click",() =>
+        {
+            clearInterval(timer);
+        });
+
+    </script>
+</body>
+</html>
