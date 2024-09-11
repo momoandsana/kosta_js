@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html >
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+		
+
+		
+	</head>
+	<body>
+	<form name="f">
+	  <table>
+	  	<tr>
+	  		<th colspan="2" bgcolor="yellow"> ID 중복 체크 </th>
+	  	</tr>
+	  	<tr>
+	  		<th>ID</th>
+	  		<td>
+	  			<input type="text" name="id" />
+	  			<input type="button" value="사용하기" onclick="idResult()" />
+	  		</td>
+	  	</tr>  	
+	  </table>
+	 </form>
+	 <script>
+		document.querySelector("[value=사용하기]").addEventListener("click",function(){
+			let idEle=document.querySelector("[name=id]").value; //문자열로 나오기 때문에 value필요없음
+
+			if(!idEle)
+			{	
+				alert("아이디 입력해");
+				idEle.focus();
+				return;
+			}
+			opener.document.querySelector('[name=id]').value=idEle;//부모창에 가서 찾고 값을 넣는다
+			self.close(); // 자식 본인이 닫힘
+			//opener.close();//부모가 닫힘
+
+		});
+	 </script>
+	 
+	</body>
+</html>
+

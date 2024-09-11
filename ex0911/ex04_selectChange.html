@@ -12,7 +12,32 @@
       let lotte=["라이스버거","데리버거","새우버거","한우버거","치즈버거"];
       let king=["불고기와퍼","치즈와퍼","쥬니어와퍼","쉬림프버거","스테이크버거","감자칩"];
       let mac=["1997버거","맥모닝","빅맥","베이컨버거","치킨버거"];
-      
+    
+        onload=()=>{
+            document.querySelector("[name=majang]").addEventListener("change",function(e){
+                //alert(kfc);
+
+                //alert(e.target.value) // kfc
+
+                let menu=new Function("return "+ e.target.value)(); //리턴 뒤에 공백이 있어야 함
+                alert(menu);
+
+
+                //menu=e.target.value;
+                let subSelect=document.querySelector("[name=menu]");
+                //추가 전에 기존 옵션 제거
+                while(subSelect.length>1)
+                {
+                    subSelect.options[1]=null;//처음 기본 옵션은 놔두기 위해 --선택--
+                }
+                
+
+                menu.forEach((item,index)=>{
+                    subSelect.options[subSelect.length]=new Option(item,index);
+                });
+            });
+        }
+
     
   </script>
  </head>
@@ -20,7 +45,7 @@
  <body>
  <h2> 대/ 소 분류</h2>
  <form name="f">
-   <select name="majang" onchange="subMenu(this)">
+   <select name="majang"?>
        <option value="0">--매장 선택 --</option>
 	   <option value="kfc">KFC</option>
 	   <option value="lotte">롯데리아</option>

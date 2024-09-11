@@ -2,7 +2,33 @@
 <html>
  <head>
   <title> New Document </title>
-  
+  <script>
+	onload=()=>
+	{
+		document.querySelector('[name=job]').addEventListener("change",(e)=>
+		{
+			let selectedValue=e.target.value+"<br>";
+
+			//선택된 인덱스
+			selectedValue = "선택된 인덱스 = "+e.target.selectedIndex+"<br>";
+
+			//select에 있는 옵션의 개수
+			selectedValue = "개수 = "+e.target.length+"<br>";
+
+			document.getElementById('result').innerHTML=selectedValue;
+
+			//option태그를 추가 - <option value="백수">백수</option>
+			let op=new Option("강사","teacher");//<option value=teacher>강사</option>
+			e.target.options[e.target.length]=op;
+
+			//제거
+			e.target.options[0]=null;
+
+
+		});
+	}
+
+  </script>
  </head>
 
  <body>

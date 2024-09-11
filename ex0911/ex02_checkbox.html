@@ -31,7 +31,8 @@
  <div id="result"></div> 
  <!-- 버튼 하나 누르면 선택한 값들을 가지고 와서 출력 -->
 
-
+ <!-- <input type="checkbox" id="myCheckbox" checked> -->
+  <!-- 체크박스는 checked 라는 속성이 기본으로 존재한다 -->
  <script>
 	document.querySelector("[name=all]").addEventListener("click", (event)=>{
 		//현재 체크박스가 선택되었으면 모든 hobby를 선택(checked=true)
@@ -59,6 +60,7 @@
 		//item이 체크박스
 		document.querySelectorAll("[name=hobby]").forEach((item,index)=>{
 			item.checked=event.target.checked;
+			// event.target.checked는 하나인데 이거를 여러  item을 순회하면서 넣어줌
 		});
 
 	});
@@ -68,6 +70,7 @@
 		//hobby에 선택된 체크박스의 value를 모아서 div영역에 넣기
 		let hobbyStr="취미는 : ";
 
+		// name=hobby는 여러 개이기 때문에 배열로 관리->forEach 사용가능
 		document.querySelectorAll("[name=hobby]:checked").forEach((item,index)=>{
 				hobbyStr+=item.value+" , "
 		});
