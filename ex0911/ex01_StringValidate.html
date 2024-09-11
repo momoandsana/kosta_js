@@ -6,24 +6,25 @@
   <title>Document</title>
   
 
- 
+ <!-- e.target -> 이벤트가 발생한 구체적인 요소, 변경을 하고 이벤트를 주고 싶으면 사용 -->
  </head>
  <body>
  <form name="form">
    ID : <input type="text" name="id"><span id="idSpan"></span><p> 
-    <!-- 유효성체크에 실패하면 span에 메시지가 나옴 -->
+    <!-- 유효성체크에 실패하면 span에 메시지가 나옴.이 메시지를 넣기 위해서 span을 만든거임 -->
    age : <input type="text" name="age" ><span></span><p>
    email : <input type="text" name="email"> <span></span><p>
 
    <fieldset>
-     <legend>주민번호 </legend>
-	 <input type="text" size="6" name="jumin1"  > - 
-	 <input type="text" size="7" name="jumin2"  ><span></span> <p>
+    <legend>주민번호 </legend>
+	  <input type="text" size="6" name="jumin1"  > - 
+	  <input type="text" size="7" name="jumin2"  ><span></span> <p>
      
 	 성별 : 
 	 <input type="radio" name="gender" value="남자" >남자
      <input type="radio" name="gender" value="여자">여자
    </fieldset>
+   <!-- name은 중복되어도 ok. 배열로 들어감 -->
 
  </form>
  <script>
@@ -37,17 +38,111 @@
     event.target.style.border="solid black 1px";//커서를 잃어버리는 것이 blur
     //id박스에 영문만 가능하다(대,소문자 모두 가능)
     let idEle=event.target;
-    let convertValue=idEle.value.toUpperCase();// 모두 대문자로 변환->유효성 검증을 위해서
-    for(let i=0;i<convertValue.length;i++){
-      let ch=convertValue.charAt(i);
-      //console.log(ch);
-      if(ch<'A' || ch>'Z'){// 영문이 아닌 다른 값을 입력한다면
-        //메시지를 span영역에 넣기
-        document.getElementById("idSpan").innerHTML="<strong style='color:red'> 영문만 입력해주세요</strong>";
+
+
+
+    // let convertValue=idEle.value.toUpperCase();// 모두 대문자로 변환->유효성 검증을 위해서
+    // for(let i=0;i<convertValue.length;i++){
+    //   let ch=convertValue.charAt(i);
+    //   //console.log(ch);
+    //   if(ch<'A' || ch>'Z'){// 영문이 아닌 다른 값을 입력한다면
+    //     //메시지를 span영역에 넣기
+    //     document.getElementById("idSpan").innerHTML="<strong style='color:red'> 영문만 입력해주세요</strong>";
+    //   }
+    //   idEle.value="";
+    //   return;
+    // }
+
+
+    ///////////////////////////////////////////////////////////////
+    // 영문+숫자+!@#(특수문자) 가능
+    let str="qwertyuiopasdfghjklzxcvbnm1234567890!@#";
+    for(let i=0; i<idEle.value.length; i++)
+    {
+      let ch=idEle.value.charAt(i);
+      if(str.indexOf(ch)===-1)
+      {
+        document.getElementById("idSpan").innerHTML="<strong style='color:red'> qwertyuiopasdfghjklzxcvbnm1234567890!@#만 입력해주세요</strong>";
       }
-      idEle.value="";
+    }
+
+    //숫자만 가능
+    // let str2="1234567890";
+    // for(let i=0; i<idEle.value.length; i++)
+    // {
+    //   let ch=idEle.value.charAt(i);
+    //   if(str2.indexOf(ch)===-1)
+    //   {
+    //     document.getElementById("idSpan").innerHTML="<strong style='color:red'> 숫자만 입력해주세요</strong>";
+    //   }
+    // }
+
+  }); //함수 끝
+
+  ////////////////////////////////
+  //나이에 blur 이벤트 적용
+  document.querySelector("[name=age]").addEventListener("blur",function(event)
+  {
+    //
+    numberCheck(event.target);
+  });
+
+  let numberCheck=(eleObj)=>{//eleObj=e.target
+    /*
+      previousSibling, nextSibling, firstChild, lastChild, childNodes,hasChildNodes() method
+      */
+    if(isNaN(eleObj.value)){ //숫자만 입력하는 경우에는 에러 없음
+      eleObj.nextSibling.innerHTML =
+      "<strong style='color:red'> 숫자만 입력해주세요</strong>"
+      eleObj.value="";
+      eleObj.focus();
+      return false;
+    }
+    else
+    {
+      eleObj.nextSibling.innerHTML ="";
+      return true;
+    }
+  };
+
+  ///////////////////////////////////////
+  document.querySelector("[name=jumin1]").addEventListener("keyup",(e)=>{ //키보드를 눌렀다 떼면 일어나는 일 keyup
+    console.log(1);
+    if(isNaN(e.target.value))
+    {
+      // 0~글자길이에서 -1 만큼 글자를 추출,숫자가 아닌 것들은 입력이 되지 않음
+      e.target.value=e.target.value.substr(0,e.target.value.length-1);
       return;
     }
+
+    //6자리 체크
+    if(e.target.value.length===6)
+    {
+      //커서 이동->2번째 박스로 이동
+      document.querySelector("[name=jumin2]").focus();
+    }
+  });
+
+  ///////////////////////////
+  document.querySelector("[name=jumin2]").addEventListener("blur",function(event){
+    //숫자유무체크
+    if(numberCheck(event.target))//숫자검증이 끝나고 성별 검증
+    {
+      //성별체크
+      let ch=event.target.value.charAt(0);
+      let arrEle=document.querySelectorAll("[name=gender]");
+      if(ch==="1" || ch==="3")
+      {
+        arrEle[0].checked=true; //체크박스는 한 쪽이 선택되면 다른 쪽은 해제
+      }
+      else
+      {
+        arrEle[1].checked=true;
+      }
+    };
+
+
+
   });
 
  </script>
