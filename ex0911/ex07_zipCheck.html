@@ -1,32 +1,84 @@
 <!DOCTYPE HTML >
-<html >
+<html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>New Web Project</title>
-		
+		<!-- 문서의 제목을 설정, 브라우저 탭에 표시됨 -->
 	</head>
 	<body>
 	  
-	  <form name="f">
+	  <form name="f" onchange="setAddress()">
+	  	<!-- 우편번호 선택 폼. 사용자가 옵션을 변경할 때마다 setAddress() 함수가 호출됨 -->
 	  	우편번호 
-	  	<select>
+	  	<select id="zipcodeSelect">
+	  	  <!-- 우편번호 선택을 위한 <select> 태그, 사용자가 선택할 수 있는 옵션 목록 -->
 	  	  <option value="0">-- 주소 선택 --</option>	
+	  	  <!-- 기본 옵션으로 선택되지 않은 상태를 나타냄. value="0" -->
+
 	  	  <option value="123-333 서울시 구로구 구로1동">
 	  	  	123-333 서울시 구로구 구로1동
+	  	  	<!-- value 값으로 우편번호와 주소를 결합한 형태의 데이터를 저장 -->
 	  	  </option>
+
 	  	  <option value="222-222 서울시 청담동 청담3동">
 	  	  	222-222 서울시 청담동 청담3동
+	  	  	<!-- value 값으로 다른 우편번호와 주소 -->
 	  	  </option>
+
 	  	  <option value="444-444 부산시 대구동 대로2동">
 	  	  	444-444 부산시 대구동 대로2동
+	  	  	<!-- value 값으로 다른 우편번호와 주소 -->
 	  	  </option>
+
 	  	  <option value="555-221 경기도 성남시 분당구 분당1동">
 	  	  	555-221 경기도 성남시 분당구 분당1동
+	  	  	<!-- value 값으로 다른 우편번호와 주소 -->
 	  	  </option>
 	  	</select>
-	  	
+		<br><br>
+		<!-- 줄바꿈을 위한 <br> 태그 두 개 -->
+
+		<input type="button" value="우편번호 & 주소 넣기" onclick="setAddress()"/>
+		<!-- '우편번호 & 주소 넣기' 버튼, 클릭 시 setAddress() 함수가 호출됨 -->
 	  </form>	
+
+	  <script>
+		function setAddress() 
+		{
+			// setAddress 함수 정의. 우편번호와 주소를 부모 창으로 전달하는 역할
+			const select = document.getElementById("zipcodeSelect");
+			// 'zipcodeSelect'라는 id를 가진 <select> 요소를 선택하여 const select 변수에 저장
+
+			const selectedOption = select.options[select.selectedIndex].value;
+			// 사용자가 선택한 옵션의 value 값을 selectedOption 변수에 저장
+
+			if (selectedOption !== "0") 
+			{
+				// 선택된 값이 "0"이 아니면(즉, 유효한 주소가 선택되면)
+				const zipCode = selectedOption.substring(0,7);
+				// 선택된 value 값에서 처음 7글자(우편번호)를 잘라내어 zipCode 변수에 저장
+
+				const addr = selectedOption.substring(8);
+				// 선택된 value 값에서 8번째 문자부터 끝까지(주소)를 잘라내어 addr 변수에 저장
+
+				if (window.opener) 
+				{
+					// 부모 창이 열려 있는지 확인 (window.opener는 자식 창에서 부모 창을 참조)
+					window.opener.document.querySelector("[name=zip1]").value = zipCode.split("-")[0];
+					// 부모 창의 name 속성이 'zip1'인 입력 필드를 찾아 우편번호의 앞부분을 설정
+
+					window.opener.document.querySelector("[name=zip2]").value = zipCode.split("-")[1];
+					// 부모 창의 name 속성이 'zip2'인 입력 필드를 찾아 우편번호의 뒷부분을 설정
+
+					window.opener.document.querySelector("[name=addr]").value = addr;
+					// 부모 창의 name 속성이 'addr'인 입력 필드를 찾아 주소를 설정
+
+					window.close();
+					// 현재 자식 창을 닫음
+				}
+			}
+		}
+	  </script>
 	
 	</body>
 </html>
-

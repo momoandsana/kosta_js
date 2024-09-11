@@ -1,32 +1,100 @@
 <!DOCTYPE HTML >
 <html>
  <head>
-  <title> New Document </title>
-  <meta name="Generator" content="EditPlus">
-  <meta name="Author" content="">
-  <meta name="Keywords" content="">
-  <meta name="Description" content="">
-   
-
+  <title> New Document </title> <!-- 브라우저 탭에 표시될 문서 제목 -->
+  <meta name="Generator" content="EditPlus"> <!-- 문서 생성기를 나타냄 -->
+  <meta name="Author" content=""> <!-- 문서 작성자 정보 (현재 비어 있음) -->
+  <meta name="Keywords" content=""> <!-- 검색 엔진에 사용될 키워드 (현재 비어 있음) -->
+  <meta name="Description" content=""> <!-- 검색 엔진에 표시될 설명 (현재 비어 있음) -->
  </head>
 
  <body>
- <img src="img/cat.gif" /><br/><br/>
+ <img id="mainImage" src="img/cat.gif" /><br/><br/> 
+ <!-- mainImage ID를 가진 기본 이미지, 초기 이미지는 고양이 그림 (cat.gif) -->
+ <!-- <br/><br/>는 줄바꿈을 위해 사용 -->
 
-<span>[ 원숭이 ]</span> &nbsp;&nbsp;
-<span>[ 사자 ]</span> &nbsp;&nbsp;
-<span>[ 고양이 ]</span> &nbsp;&nbsp;
-<span>[ 강아지 ]</span> &nbsp;&nbsp;
-  
+<span class="s1" data-img-id="monkey" data-img-src="img/monkey.gif">[ 원숭이 ]</span> &nbsp;&nbsp;
+<!-- "원숭이" 텍스트, data-img-id로 이미지 아이디(monkey), data-img-src로 이미지 경로(img/monkey.gif)를 저장 -->
+<!-- &nbsp;&nbsp;는 공백을 의미 -->
+
+<span class="s1" data-img-id="lion" data-img-src="img/lion.gif">[ 사자 ]</span> &nbsp;&nbsp;
+<!-- "사자" 텍스트, 사자 이미지 정보를 data-img-id와 data-img-src로 저장 -->
+
+<span class="s1" data-img-id="cat" data-img-src="img/cat.gif">[ 고양이 ]</span> &nbsp;&nbsp;
+<!-- "고양이" 텍스트, 고양이 이미지 정보를 저장 -->
+
+<span class="s1" data-img-id="dog" data-img-src="img/dog.gif">[ 강아지 ]</span> &nbsp;&nbsp;
+<!-- "강아지" 텍스트, 강아지 이미지 정보를 저장 -->
+
 <hr color="red"/>
+<!-- 빨간색 수평선 (hr 태그는 수평선을 그리는 데 사용됨) -->
 
-<img src="img/monkey.gif"  width="70" height="60" />&nbsp;&nbsp;
+<img src="img/monkey.gif" width="70" height="60" id="monkey"/>&nbsp;&nbsp;
+<!-- width와 height가 70x60인 원숭이 이미지, ID는 "monkey" -->
 
-<img src="img/cat.gif" width="70" height="60" />&nbsp;&nbsp;
+<img src="img/cat.gif" width="70" height="60" id="cat"/>&nbsp;&nbsp;
+<!-- width와 height가 70x60인 고양이 이미지, ID는 "cat" -->
 
-<img src="img/dog.gif" width="70" height="60" />&nbsp;&nbsp;
+<img src="img/dog.gif" width="70" height="60" id="dog"/>&nbsp;&nbsp;
+<!-- width와 height가 70x60인 강아지 이미지, ID는 "dog" -->
 
-<img src="img/lion.gif" width="70" height="60" />&nbsp;&nbsp;
- 
+<img src="img/lion.gif" width="70" height="60" id="lion"/>&nbsp;&nbsp;
+<!-- width와 height가 70x60인 사자 이미지, ID는 "lion" -->
+
+<script>
+    document.querySelectorAll(".s1").forEach((item)=>{ 
+    // .s1 클래스를 가진 모든 요소들을 선택하고, 각각에 대해 반복 실행
+
+        item.addEventListener("mouseover",(e)=>
+        {  
+        // mouseover 이벤트 추가. 해당 텍스트에 마우스를 올릴 때 이벤트가 발생
+
+            let imgId = item.getAttribute("data-img-id"); 
+            // data-img-id 속성에서 이미지 ID를 가져옴 (예: "monkey", "lion" 등)
+
+            let imgSrc = item.getAttribute("data-img-src");
+            // data-img-src 속성에서 이미지 경로를 가져옴 (예: "img/monkey.gif")
+
+            let objImg = document.getElementById(imgId); 
+            // 해당 이미지 ID로 이미지를 찾아 objImg에 저장 (예: ID가 "monkey"인 이미지)
+
+            let mainImg = document.getElementById("mainImage");
+            // ID가 "mainImage"인 이미지를 찾아 mainImg에 저장
+
+            if(mainImg)
+            {
+                mainImg.src = imgSrc;
+                // mainImg가 존재하면, 그 이미지의 src 속성을 data-img-src로 설정하여 메인 이미지 변경
+            }
+
+            if(objImg)
+            {
+                objImg.width = 140;
+                objImg.height = 120;
+                // 선택된 이미지(objImg)가 존재하면, 그 이미지의 크기를 140x120으로 변경
+            }
+        });
+
+        item.addEventListener("mouseout",(e)=>
+        {  
+        // mouseout 이벤트 추가. 마우스가 텍스트에서 벗어날 때 이벤트가 발생
+
+            let imgId = item.getAttribute("data-img-id");
+            // 다시 이미지 ID를 가져옴 (마우스가 벗어난 요소의 ID)
+
+            let objImg = document.getElementById(imgId);
+            // 해당 ID로 이미지를 찾아 objImg에 저장
+
+            if(objImg)
+            {
+                objImg.width = 70;
+                objImg.height = 60;
+                // 선택된 이미지(objImg)가 존재하면, 그 이미지의 크기를 원래대로 70x60으로 되돌림
+            }
+        });
+
+    });
+</script>
+
  </body>
 </html>

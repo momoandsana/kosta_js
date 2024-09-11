@@ -13,7 +13,7 @@
       let king=["불고기와퍼","치즈와퍼","쥬니어와퍼","쉬림프버거","스테이크버거","감자칩"];
       let mac=["1997버거","맥모닝","빅맥","베이컨버거","치킨버거"];
     
-        onload=()=>{
+        onload=()=>{// e.target -> change이벤트가 발생한 name=majang
             document.querySelector("[name=majang]").addEventListener("change",function(e){
                 //alert(kfc);
 
@@ -24,7 +24,8 @@
 
 
                 //menu=e.target.value;
-                let subSelect=document.querySelector("[name=menu]");
+                let subSelect=document.querySelector("[name=menu]"); // 객체를 가지고 옴
+
                 //추가 전에 기존 옵션 제거
                 while(subSelect.length>1)
                 {
