@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  
+  <title>Document</title>
+   
+ </head>
+ <body>
+ <form>
+   <fieldset>
+      <legend>취미선택</legend>
+	  <input type="checkbox" name="all" value="all">
+	   <span id="span">전체선택</span>
+	  <p>
+
+
+	  <!-- name이 같기 때문에 배열임, 인덱스로 관리 -->
+	   <!-- value는 체크되었을 때 서버로 전송되는 값 -->
+	  <input type="checkbox" name="hobby" value="등산">등산
+      <input type="checkbox" name="hobby" value="수영">수영
+	  <input type="checkbox" name="hobby" value="낚시">낚시
+	  <input type="checkbox" name="hobby" value="놀기">놀기
+	  <input type="checkbox" name="hobby" value="먹기">먹기
+
+	  <input type="button" value="클릭">
+
+   </fieldset>
+ </form>
+ 
+ <div id="result"></div> 
+ <!-- 버튼 하나 누르면 선택한 값들을 가지고 와서 출력 -->
+
+
+ <script>
+	document.querySelector("[name=all]").addEventListener("click", (event)=>{
+		//현재 체크박스가 선택되었으면 모든 hobby를 선택(checked=true)
+		//아니면 체크 해제(checked=flase);
+
+		// if(event.target.checked)
+		// {
+		// 	let allHobby=document.querySelectorAll("[name=hobby]");
+			
+		// 	for(let i=0; i<allHobby.length;i++)
+		// 	{
+		// 		allHobby[i].checked=true;
+		// 	}
+		// }
+		// else
+		// {
+		// 	let allHobby=document.querySelectorAll("[name=hobby]");
+			
+		// 	for(let i=0; i<allHobby.length;i++)
+		// 	{
+		// 		allHobby[i].checked=false;
+		// 	}
+		// }
+
+		//item이 체크박스
+		document.querySelectorAll("[name=hobby]").forEach((item,index)=>{
+			item.checked=event.target.checked;
+		});
+
+	});
+
+	document.querySelector("[value=클릭]").addEventListener("click",(event)=>
+	{
+		//hobby에 선택된 체크박스의 value를 모아서 div영역에 넣기
+		let hobbyStr="취미는 : ";
+
+		document.querySelectorAll("[name=hobby]:checked").forEach((item,index)=>{
+				hobbyStr+=item.value+" , "
+		});
+
+		// document.querySelectorAll("[name=hobby]").forEach((item,index)=>{
+		// 	if(item.checked)
+		// 	{
+		// 		hobbyStr+=item.value+" , "
+		// 	}
+		// });
+
+		document.getElementById("result").innerHTML=hobbyStr;
+	});
+
+
+
+
+ </script>
+  
+ </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> New Document </title>
+  
+ </head>
+
+ <body>
+
+ <h3>
+   Event 종류 알아보기
+ </h3>
+ <form name="f">
+    <input type="text" 
+    onfocus="this.style.border='red double 5px';this.style.backgroundColor='pink'" 
+    onblur="this.style.border='gray solid 1px'"/> <p>
+
+	직업 : 
+	 <select name="job"  onchange="check(this)">
+       <option value="0">--선택-- </option>
+	   <option value="백수">백수</option>
+	   <option value="백조">백조 </option>
+	   <option value="학생">학생 </option>
+	   <option value="날라리">날라리 </option>
+	 </select>	 
+ </form>
+ 
+ <p>
+ <div id="result"></div>
+  
+ </body>
+ 
+ 
+ 
+</html>

@@ -35,7 +35,7 @@
     }
   });
   document.querySelector("[name=id]").addEventListener("blur",function(event){
-    event.target.style.border="solid black 1px";//커서를 잃어버리는 것이 blur
+    event.target.style.border="solid black 1px";//커서가 다른 곳으로 이동한 것이 blur
     //id박스에 영문만 가능하다(대,소문자 모두 가능)
     let idEle=event.target;
 
@@ -111,6 +111,8 @@
     if(isNaN(e.target.value))
     {
       // 0~글자길이에서 -1 만큼 글자를 추출,숫자가 아닌 것들은 입력이 되지 않음
+      // 마지막으로 잘못 입력된 값을 제외하고 0~length-1만큼 잘라서 해당 값으로 입력
+      //정상적인 값은 유지된다
       e.target.value=e.target.value.substr(0,e.target.value.length-1);
       return;
     }
