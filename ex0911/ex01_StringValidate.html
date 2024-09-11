@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  
+  <title>Document</title>
+  
+
+ 
+ </head>
+ <body>
+ <form name="form">
+   ID : <input type="text" name="id"><span id="idSpan"></span><p> 
+    <!-- 유효성체크에 실패하면 span에 메시지가 나옴 -->
+   age : <input type="text" name="age" ><span></span><p>
+   email : <input type="text" name="email"> <span></span><p>
+
+   <fieldset>
+     <legend>주민번호 </legend>
+	 <input type="text" size="6" name="jumin1"  > - 
+	 <input type="text" size="7" name="jumin2"  ><span></span> <p>
+     
+	 성별 : 
+	 <input type="radio" name="gender" value="남자" >남자
+     <input type="radio" name="gender" value="여자">여자
+   </fieldset>
+
+ </form>
+ <script>
+  document.querySelector("[name=id]").addEventListener("focus",function(event){
+    event.target.style.border="double red 3px";// 커서를 놓는게 focus
+    if(!event.target.value){
+      document.getElementById("idSpan").innerHTML="";
+    }
+  });
+  document.querySelector("[name=id]").addEventListener("blur",function(event){
+    event.target.style.border="solid black 1px";//커서를 잃어버리는 것이 blur
+    //id박스에 영문만 가능하다(대,소문자 모두 가능)
+    let idEle=event.target;
+    let convertValue=idEle.value.toUpperCase();// 모두 대문자로 변환->유효성 검증을 위해서
+    for(let i=0;i<convertValue.length;i++){
+      let ch=convertValue.charAt(i);
+      //console.log(ch);
+      if(ch<'A' || ch>'Z'){// 영문이 아닌 다른 값을 입력한다면
+        //메시지를 span영역에 넣기
+        document.getElementById("idSpan").innerHTML="<strong style='color:red'> 영문만 입력해주세요</strong>";
+      }
+      idEle.value="";
+      return;
+    }
+  });
+
+ </script>
+  
+ </body>
+</html>

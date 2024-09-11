@@ -30,7 +30,7 @@
 
         const updateTime=()=>
         {
-            const a=new Date();
+            const a=new Date();//이게 밖에 있으면 다시 눌러도 업데이트가 되지 않는다. 눌릴 때마다 새로 생성해서 사용해야 한다
             const h=String(a.getHours() % 12 ? a.getHours() % 12 : 12).padStart(2,'0');
             const m=String(a.getMinutes()).padStart(2,'0');
             const s=String(a.getSeconds()).padStart(2,'0');

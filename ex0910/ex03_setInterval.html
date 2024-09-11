@@ -19,10 +19,13 @@
         });
 
         document.querySelector("#stop").addEventListener("click",() => {
-            st && clearInterval(st);
+            st && clearInterval(st); // 최초로 시작할때 시작버튼 클릭없이 중지를 하지 못하도록 하는 코드
         });
         /*
         falsy를 제외한 나머지는 모두 truthy로 간주한다
+        st변수에는 최초에는 null값이 들어감
+        st변수에는 setInterval로부터 변환된 타이머 id가 반환->반환 자체를 한다면 truthy한 값으로 간주
+        clearInterval(st)는 반환 자체를 하지 않으므로 st의 영향만 받는다
         */
     </script>
 </body>
