@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3> this : 호출한 주체에 의해 this가 결정된다 </h3>
+    
+    <button id="btn1">클릭1</button>
+    <button id="btn2">클릭2</button>
+
+    <button id="btn3">클릭3</button>
+    <button id="btn4">클릭4</button>
+
+    <script>
+        const student={
+            name:"hee",
+            print:function(){
+                console.log(this); // this는 student? method?
+                console.log(this.name);
+                //console.log(event.target);
+            }
+        }
+
+        //호출해보자
+        student.print(); // student 정보가 나옴
+
+        console.log("함수를 변수에 담아서 호출해보자");
+        let myPrint=student.print;//호출이 아니라 변수에 담았다
+        myPrint(); // window 객체가 나옴
+
+        //이벤트 등록해서 호출해보자!!
+        document.getElementById("btn1").addEventListener("click",student.print);  // 버튼1 호출했으므로 this로 버튼 1이 나온다  
+        document.getElementById("btn2").addEventListener("click",myPrint);    
+        // 버튼 2 호출했으므로 버튼 2가 this로 나온다
+        document.getElementById("btn3").addEventListener("click",function(e){
+            console.log(this); 
+            console.log(event.target);
+            console.log(e.target); // 모두  btn3가 나온다(호출한 주체)
+        });    
+
+        document.getElementById("btn4").addEventListener("click",(e)=>{
+            console.log(this); // arrow함수는 window 호출
+            console.log(event.target); // btn4
+            console.log(e.target); // btn4 
+        });    
+
+
+
+
+    </script>
+
+</body>
+</html>

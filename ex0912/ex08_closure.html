@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Closure : 클로저는 내부함수에서의 외부함수의 범위에 대한 접근</h3>
+    <script>
+        function outer(x){
+            console.log(x);
+
+            return function(y){
+                return x+y;
+            }
+        }
+
+        console.log("------------");
+        const re1 = outer(5);
+        const re2 = outer(6);
+        const re3 = outer(7);
+
+
+        console.log(re1);
+        console.log(re2);
+        console.log(re3);
+
+
+        let i=re1(1);
+        let j=re1(2);
+        let k=re1(3);
+
+    
+        console.log("------------");
+        console.log(i);// 접근이 가능하다
+        console.log(j);
+        console.log(k);
+
+        console.log(re1(10))
+        console.log(re2(20))
+        console.log(re3(30))
+
+</script>
+</body>
+</html>

@@ -7,6 +7,54 @@
 </head>
 <body>
     <h1>Optional Chaining</h1>
-    
+    <!-- 중첩된 객체에서 존재하지 않는 특정 속성=property를 조회할 때 
+    오류없이 undefined 반환하고 그냥 넘어갈 수 있도록 하는 것
+    ? . 은 ?. 앞의 평가 대상이 undefined 이나 null이면 평가를 멈추고  undefined 리턴 -->
+    <script>
+        const person1={
+            name:"hee",
+            job:{
+                title:"teacher",
+                manager:{
+                    name:"kim"
+                }
+            }
+        }
+
+        const person2={
+            name:"jang"
+        };
+
+        const print=function(person){
+            // person의 manager의 이름을 알고싶다!!
+            //console.log(person.job.manager.name);
+            if(person){
+                if(person.job){
+                if(person.job.manager){
+                    console.log(person.job.manager.name)
+                }
+            } 
+            }
+
+            // && or || 특징 이용하는 방법
+            //let re=person && person.job && person.job.manager && person.job.manager.name;
+
+            //Optional Changing - ?.
+            let re=person?.job?.manager?.name; // 깊이 있는 탐색이 가능함
+
+
+            console.log(re);
+        }
+        
+        //함수호출
+        print(person1);
+        console.log("------------")
+        print(person2);
+
+
+
+
+
+    </script>
 </body>
 </html>

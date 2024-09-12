@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- the ?? operator returns the first argument 
+    if it is not nullish(null or undefined). null인 경우 6가지를 다 체크하지는 않음-->
+
+    <h2>Nullish - ??</h2>
+    <script>
+        //조건문에서 비교할 때 false인 경우의 값
+        // : false,0,null,undefined,NaN,...,' '
+
+        {
+            const name="hee";
+            const userName=name || "guest"; // true이면 name false이면 "guest"
+            console.log("당신은  "+userName);
+        }
+
+        {
+            const name=null;
+            const userName=name || "guest"; // true이면 name false이면 "guest"
+            console.log("당신은  "+userName);
+        }
+
+        {
+            const name=0;
+            const userName=name || "guest"; // true이면 name false이면 "guest"
+            console.log("당신은  "+userName);
+        }
+        
+        console.log("------nullish (null or undefined)--------------");
+        {
+            const name=0; // 0이라는 값이 있다고 판단
+            const userName=name ?? "Guest";
+            console.log("당신은 "+userName);
+        }
+
+        {
+            const name=""; // 공백이라는 값이 있다고 판단
+            const userName=name ?? "Guest";
+            console.log("당신은 "+userName);
+        }
+
+        {
+            const name=null; // null 이나 undefined는 "Guest"
+            const userName=name ?? "Guest";
+            console.log("당신은 "+userName);
+        }
+
+        {
+            const name=undefined;
+            const userName=name ?? "Guest";
+            console.log("당신은 "+userName);
+        }
+
+
+    </script>
+
+
+</body>
+</html>
