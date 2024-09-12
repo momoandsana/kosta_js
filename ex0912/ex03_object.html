@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Object={ }</h3>
+    <script>
+        const emp={
+            empno:100,
+            ename:"heejung",
+            job:"teacher",
+            dept:{
+                dname:"IT",
+                deptno:10
+            },
+            message:function(){ 
+                return "반가워요";
+            }
+            // 객체가 가지고 있는 기능->method
+        };
+
+        //Emp 객체를 접근해보자
+        document.write(`emp = ${emp}<br>`);
+        document.write(`${emp.empno} | ${emp.ename}<br>`);
+        document.write(`${emp.dept.dname}<br>`); // . 으로 구성요소에 접근한다
+
+        document.write(`${emp.message()}<br>`); // 함수 호출
+
+        // for in->객체 for of->배열
+        for(let key in emp)//여기서 key는 property
+        {
+            document.write(`{key} = ${emp[key]}<br>`);
+        }
+
+        for(let key in emp.dept)
+        {
+            document.write(`{key}=${emp.dept[key]}<br>`);
+        }
+        //////
+        let name="희정"
+        let age=30;
+        let addr="오리";
+
+        // const student={
+        //     name : name,
+        //     age : age,
+        //     addr : addr
+        // }
+
+        // 알아서 바인딩 해주기 때문에 위처럼 작성할 필요가 없음, 변수이름이 property가 된다
+        const student={
+            name,
+            age,
+            addr
+        }
+
+        console.log(student);
+
+    </script>
+</body>
+</html>
