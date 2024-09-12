@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="EUC-KR">
+    <title>Insert title here</title>
+</head>
+<body>
+    <!-- href에 #이 들어가 있으면 이동의 기능을 막는다 -->
+    <a href="#" data-url="naver.com">네이버</a> <p>
+    <a href="#" data-url="daum.net">다음</a> <p>
+    <a href="#" data-url="kosta.or.kr">코스타</a> <p>
+
+    <script>
+        document.querySelectorAll("a").forEach((aEle) => {
+            aEle.addEventListener("click", (e) => {
+                    let url = "https://" + e.target.getAttribute("data-url");
+                    window.opener.location.href = url;
+            });
+        });
+    </script>
+</body>
+</html>
