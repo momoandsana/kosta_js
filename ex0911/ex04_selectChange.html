@@ -33,7 +33,7 @@
                 }
                 
 
-                menu.forEach((item,index)=>{
+                menu.forEach((item,index)=>{ // 선택된 메뉴 배열(kfc) 안의 배열 순회하면서 옵션에 추가
                     subSelect.options[subSelect.length]=new Option(item,index);
                 });
             });

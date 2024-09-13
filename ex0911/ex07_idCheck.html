@@ -30,7 +30,7 @@
 			{	
 				alert("아이디 입력해");
 				idEle.focus();
-				return;
+				return false;
 			}
 			opener.document.querySelector('[name=id]').value=idEle;//부모창에 가서 찾고 값을 넣는다
 			self.close(); // 자식 본인이 닫힘

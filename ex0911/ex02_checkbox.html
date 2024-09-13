@@ -71,7 +71,7 @@
 		let hobbyStr="취미는 : ";
 
 		// name=hobby는 여러 개이기 때문에 배열로 관리->forEach 사용가능
-		document.querySelectorAll("[name=hobby]:checked").forEach((item,index)=>{
+		document.querySelectorAll("[name=hobby]:checked").forEach((item,index)=>{//체크된 요소들만 선택해서 추가하기
 				hobbyStr+=item.value+" , "
 		});
 

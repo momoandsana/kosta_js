@@ -6,34 +6,50 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <canvas id="myChart"></canvas>
-    </div>
+    <form>
+        <fieldset>
+           <legend>취미선택</legend>
+           <input type="checkbox" name="all" value="all">
+            <span id="span">전체선택</span>
+           <p>
+     
+     
+           <!-- name이 같기 때문에 배열임, 인덱스로 관리 -->
+            <!-- value는 체크되었을 때 서버로 전송되는 값 -->
+           <input type="checkbox" name="hobby" value="등산">등산
+           <input type="checkbox" name="hobby" value="수영">수영
+           <input type="checkbox" name="hobby" value="낚시">낚시
+           <input type="checkbox" name="hobby" value="놀기">놀기
+           <input type="checkbox" name="hobby" value="먹기">먹기
+     
+           <input type="button" value="클릭">
+     
+        </fieldset>
+      </form>
       
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      
-    <script>
-        const ctx = document.getElementById('myChart').getContext('2d');
-      
-        new Chart(ctx, {
-            type: 'line',  // 차트 유형을 지정해야 함
-            data: {
-                datasets: [
-                    {label: 'Dataset 1', fill: 'origin'},   // 0: fill to 'origin'
-                    {label: 'Dataset 2', fill: '-1'},       // 1: fill to dataset 0
-                    {label: 'Dataset 3', fill: 1},          // 2: fill to dataset 1
-                    {label: 'Dataset 4', fill: false},      // 3: no fill
-                    {label: 'Dataset 5', fill: '-2'}        // 4: fill to dataset 2
-                ]
-            },
-            options: {
-                plugins: {
-                    filler: {
-                        propagate: true
-                    }
-                }
-            }
-        });
-    </script>
+      <div id="result"></div> 
+      <!-- 버튼 하나 누르면 선택한 값들을 가지고 와서 출력 -->
+
+      <script>
+        document.querySelector("[name=all]").addEventListener("click",(event)=>
+    {
+        document.querySelectorAll("[name=hobby]").forEach((item,index)=>{
+            item.checked=event.target.checked;//전체 선택이 눌러진다면 모든 요소들을 돌면서 모든 체크박스를 체크함
+        })
+
+       
+    });
+
+    document.querySelector("[value=클릭]").addEventListener("click",(event)=>{
+        let hobbyStr="취미는 : ";
+
+      doucment.querySelectorAll("[name=hobby]:checked").forEach((item,index)=>{
+        hobbyStr+=item.value;
+      })
+    document.getElementById("result").innerHTML=hobbyStr
+    })
+
+
+      </script>
 </body>
 </html>

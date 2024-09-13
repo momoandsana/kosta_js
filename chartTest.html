@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+      
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+      
+        new Chart(ctx, {
+            type: 'line',  // 차트 유형을 지정해야 함
+            data: {
+                datasets: [
+                    {label: 'Dataset 1', fill: 'origin'},   // 0: fill to 'origin'
+                    {label: 'Dataset 2', fill: '-1'},       // 1: fill to dataset 0
+                    {label: 'Dataset 3', fill: 1},          // 2: fill to dataset 1
+                    {label: 'Dataset 4', fill: false},      // 3: no fill
+                    {label: 'Dataset 5', fill: '-2'}        // 4: fill to dataset 2
+                ]
+            },
+            options: {
+                plugins: {
+                    filler: {
+                        propagate: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

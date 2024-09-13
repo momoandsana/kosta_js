@@ -50,7 +50,9 @@
 			// 'zipcodeSelect'라는 id를 가진 <select> 요소를 선택하여 const select 변수에 저장
 
 			const selectedOption = select.options[select.selectedIndex].value;
-			// 사용자가 선택한 옵션의 value 값을 selectedOption 변수에 저장
+			// select.options : 선택된 <select> 요소의 모든 옵션들을 배열로 가지고 온다
+			// select.selectedIndex : 사용자가 선택한 옵션이 인덱스 반환
+			// 결국 둘이 합쳐져서 사용자가 선택한 옵션을 찾는다
 
 			if (selectedOption !== "0") 
 			{
