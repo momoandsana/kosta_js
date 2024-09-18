@@ -57,7 +57,7 @@
 			if (selectedOption !== "0") 
 			{
 				// 선택된 값이 "0"이 아니면(즉, 유효한 주소가 선택되면)
-				const zipCode = selectedOption.substring(0,7);
+				const zipCode = selectedOption.substring(0,7);// index 0~6
 				// 선택된 value 값에서 처음 7글자(우편번호)를 잘라내어 zipCode 변수에 저장
 
 				const addr = selectedOption.substring(8);

@@ -43,6 +43,7 @@
 
 <!-- item.getAttribute()에서는 HTML에서 지정된 속성의 값을 문자열로 가지고 옴
 document.getElementById() 특정 id를 가진 요소(객체)를 직접 선택하여 가지고 옴
+dataset을 사용해도 객체를 가지고 와서 수정 가능
 요솔르 가지고 와서 조작해야 하는 경우 -->
 
 <script>
@@ -95,6 +96,19 @@ document.getElementById() 특정 id를 가진 요소(객체)를 직접 선택하
                 objImg.height = 60;
                 // 선택된 이미지(objImg)가 존재하면, 그 이미지의 크기를 원래대로 70x60으로 되돌림
             }
+            /*
+            // data-img-id 속성 값을 dataset으로 가져옴
+            let imgId = item.dataset.imgId;
+                    
+            // 해당 ID로 이미지를 찾아 objImg에 저장
+            let objImg = document.getElementById(imgId);
+                    
+            if (objImg) {
+                objImg.width = 70;
+                objImg.height = 60;
+                // 선택된 이미지(objImg)가 존재하면, 그 이미지의 크기를 70x60으로 되돌림
+            }
+            */
         });
 
     });

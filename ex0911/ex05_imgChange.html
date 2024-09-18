@@ -37,7 +37,9 @@
         //imgName은 그냥 string임
 
         let objImg=new Function("return "+imgName)();//객체가나옴(속성을 변경할 수 있음)
-
+        console.log("1. new Func : "+objImg);
+        // let obJImg=document.getElementsByName(imgName);
+        // console.log("2. element : "+obJImg);
         //console.log(imgName);//string이 나옴
         //console.log(objImg);//객체가 나옴
         //console.log(cat.src);//cat은 이미지객체
