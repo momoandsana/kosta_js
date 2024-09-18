@@ -39,6 +39,15 @@
             let btn3Ele=document.querySelector("#b");
             //alert(btn3Ele);
             //btn3Ele.addEventListener("click",test1);
+
+            /*
+            밑에서 e 는 이벤트에 대한 다양한 정보를 포함
+            이벤트가 발생한 요소, 이벤트 유형, 마우스 위치, 키보드 상태
+            1. target : 이벤트가 발생한 dom 요소, ex)버튼 요소
+            2. type : 발생한 이벤트의 종류, ex)click, keydown
+            3. clientX, clientY : 마우스 클릭의 x y 좌표
+            4. key : 키보드 이벤트에서 눌린 키의 값 반환
+            */
             btn3Ele.addEventListener("click",(e)=>
             {
                 e.target.style.color="red";
@@ -52,7 +61,7 @@
                 */
                document.getElementById("result").innerHTML+="쉬고싶다<br>";//누적
                document.querySelector("#name").value="쉬고싶다";
-               //querySelector는 value로 값을 넣는다
+               //name 아이디는 form 형식이기 때문에 value 사용
 
             });
 

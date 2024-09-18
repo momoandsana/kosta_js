@@ -15,10 +15,8 @@
 
         const testFun=()=>{
             console.log(1);
-            st=setTimeout(testFun,1000);
+            st=setTimeout(testFun,1000); // 반복적인 작업을 위해 재귀적으로 호출한다
         }
-
-
 
         document.querySelector("#start").addEventListener("click",() => {
            testFun();

@@ -23,6 +23,22 @@
         {
             console.log(key+" = "+person[key]);
         }
+
+        /*
+        for+in : 직접적인 객체 순회, 배열의 속성 반복
+        for+of : 배열이나 iterable(map,set,문자열 등)에서 사용
+        하지만 Object.values, Object.keys와 조합하면 배열의 속성에 접근 가능\
+
+        const person = { name: "희정", age: 20 };
+        for (let key in person) {
+        console.log(key + ": " + person[key]);
+        }
+
+        const numbers = [1, 2, 3, 4];
+        for (let number of numbers) {
+        console.log(number);
+        }   
+        */
     </script>
 </body>
 </html>
