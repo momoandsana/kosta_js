@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Control System Data</title>
+</head>
+<body>
+    <!-- 캔버스 요소: Chart.js로 그래프를 그릴 공간 -->
+    <div>
+        <canvas id="myChart"></canvas> <!-- 그래프가 표시될 캔버스 -->
+    </div>
+      
+    <!-- Chart.js 라이브러리를 포함하는 스크립트 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      
+    <script>
+        // 'myChart'라는 id를 가진 캔버스 요소의 2D 컨텍스트를 가져옴
+        const ctx = document.getElementById('myChart').getContext('2d');
+      
+        // Chart.js 라이브러리를 사용해 새로운 차트를 생성
+        new Chart(ctx, {
+            type: 'line',  // 차트 유형을 'line'으로 설정 (선형 차트)
+            data: {
+                labels: ['10초', '20초', '30초', '40초', '50초', '60초'],  // X축의 시간 레이블 데이터
+                datasets: [
+                    {
+                        label: '속도 (m/s)',  // 첫 번째 데이터 세트의 레이블 (속도)
+                        data: [0, 1.5, 2.8, 3.0, 2.7, 1.8],  // 속도 데이터 (Y축 데이터)
+                        borderColor: 'blue',  // 선의 색상을 파란색으로 설정
+                        fill: false,  // 선 아래의 영역을 채우지 않음
+                        yAxisID: 'y-speed'  // 이 데이터 세트가 속하는 Y축의 ID를 'y-speed'로 설정
+                    },
+                    {
+                        label: '배터리 용량 (%)',  // 두 번째 데이터 세트의 레이블 (배터리 용량)
+                        data: [100, 95, 90, 85, 80, 75],  // 배터리 레벨 데이터 (Y축 데이터)
+                        borderColor: 'green',  // 선의 색상을 초록색으로 설정
+                        fill: false,  // 선 아래의 영역을 채우지 않음
+                        yAxisID: 'y-battery'  // 이 데이터 세트가 속하는 Y축의 ID를 'y-battery'로 설정
+                    }
+                ]
+            },
+            options: {
+                responsive: true,  // 차트를 화면 크기에 맞게 반응형으로 조정
+                plugins: {
+                    title: {
+                        display: true,  // 제목을 화면에 표시할지 여부
+                        text: '로봇 속도와 배터리 용량'  // 차트 제목
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true,  // X축을 화면에 표시할지 여부
+                        title: {
+                            display: true,  // X축 제목을 표시할지 여부
+                            text: '시간'  // X축 제목 내용
+                        }
+                    },
+                    'y-speed': {  // 첫 번째 Y축 ('y-speed')에 대한 설정
+                        type: 'linear',  // Y축의 유형을 선형으로 설정
+                        position: 'left',  // Y축을 차트의 왼쪽에 배치
+                        title: {
+                            display: true,  // Y축 제목을 표시할지 여부
+                            text: '속도 (m/s)'  // Y축 제목 내용
+                        },
+                        ticks: {
+                            beginAtZero: true,  // Y축을 0부터 시작하도록 설정
+                            stepSize: 1  // Y축 간격을 1씩 설정 (눈금 간격)
+                        }
+                    },
+                    'y-battery': {  // 두 번째 Y축 ('y-battery')에 대한 설정
+                        type: 'linear',  // Y축의 유형을 선형으로 설정
+                        position: 'right',  // Y축을 차트의 오른쪽에 배치
+                        title: {
+                            display: true,  // Y축 제목을 표시할지 여부
+                            text: '배터리 레벨 (%)'  // Y축 제목 내용
+                        },
+                        ticks: {
+                            min: 0,  // Y축 최소값을 0으로 설정
+                            max: 100,  // Y축 최대값을 100으로 설정
+                            stepSize: 10  // Y축 간격을 10씩 설정
+                        },
+                        suggestedMin: 0,  // Y축 최소값을 0으로 제안 (의무적으로 적용)
+                        suggestedMax: 100,  // Y축 최대값을 100으로 제안 (의무적으로 적용)
+                        grid: {
+                            drawOnChartArea: false  // 배터리 레벨용 Y축의 그리드 라인을 차트 영역에서 제거
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
