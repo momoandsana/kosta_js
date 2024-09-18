@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Robot Control System Data</title>
 </head>
 <body>
     <div>
@@ -16,20 +16,71 @@
         const ctx = document.getElementById('myChart').getContext('2d');
       
         new Chart(ctx, {
-            type: 'line',  // 차트 유형을 지정해야 함
+            type: 'line',
             data: {
+                labels: ['10초', '20초', '30초', '40초', '50초', '60초'],  // 시간 데이터
                 datasets: [
-                    {label: 'Dataset 1', fill: 'origin'},   // 0: fill to 'origin'
-                    {label: 'Dataset 2', fill: '-1'},       // 1: fill to dataset 0
-                    {label: 'Dataset 3', fill: 1},          // 2: fill to dataset 1
-                    {label: 'Dataset 4', fill: false},      // 3: no fill
-                    {label: 'Dataset 5', fill: '-2'}        // 4: fill to dataset 2
+                    {
+                        label: '속도 (m/s)',
+                        data: [0, 1.5, 2.8, 3.0, 2.7, 1.8],  // 속도 데이터
+                        borderColor: 'blue',
+                        fill: false,
+                        yAxisID: 'y-speed'  // 속도용 Y축
+                    },
+                    {
+                        label: '배터리 용량 (%)',
+                        data: [100, 95, 90, 85, 80, 75],  // 배터리 레벨 데이터
+                        borderColor: 'green',
+                        fill: false,
+                        yAxisID: 'y-battery'  // 배터리 레벨용 Y축
+                    }
                 ]
             },
             options: {
+                responsive: true,
                 plugins: {
-                    filler: {
-                        propagate: true
+                    title: {
+                        display: true,
+                        text: '로봇 속도와 배터리 용량'
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: '시간'
+                        }
+                    },
+                    'y-speed': {  // 속도용 Y축 설정
+                        type: 'linear',
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: '속도 (m/s)'
+                        },
+                        ticks: {
+                            beginAtZero: true,  // 속도 Y축은 0부터 시작
+                            stepSize: 1  // 속도 Y축의 간격 설정
+                        }
+                    },
+                    'y-battery': {  // 배터리 레벨용 Y축 설정
+                        type: 'linear',
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: '배터리 레벨 (%)'
+                        },
+                        ticks: {
+                            min: 0,  // Y축의 최소값을 0으로 설정
+                            max: 100,  // Y축의 최대값을 100으로 설정
+                            stepSize: 10  // 배터리 레벨 Y축의 간격 설정 (10씩)
+                        },
+                        suggestedMin: 0,  // 의무적으로 0부터 시작하도록 설정
+                        suggestedMax: 100,  // 의무적으로 100까지 끝나도록 설정
+                        grid: {
+                            drawOnChartArea: false  // 배터리 레벨 Y축의 그리드 라인을 없앰
+                        }
                     }
                 }
             }
