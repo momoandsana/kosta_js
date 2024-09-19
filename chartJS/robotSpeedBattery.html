@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Control System Data</title>
+</head>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['10초', '20초', '30초', '40초', '50초', '60초'],
+                datasets: [
+                    {
+                        label: '속도 (m/s)',
+                        data: [0, 1.5, 2.8, 3.0, 2.7, 1.8],
+                        borderColor: 'blue',
+                        fill: false,
+                        yAxisID: 'y-speed'
+                    },
+                    {
+                        label: '배터리 용량 (%)',
+                        data: [100, 95, 90, 85, 80, 75],
+                        borderColor: 'green',
+                        fill: false,
+                        yAxisID: 'y-battery'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '로봇 속도와 배터리 용량'
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: '시간'
+                        }
+                    },
+                    'y-speed': {
+                        type: 'linear',
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: '속도 (m/s)'
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1
+                        }
+                    },
+                    'y-battery': {
+                        type: 'linear',
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: '배터리 레벨 (%)'
+                        },
+                        ticks: {
+                            min: 0,
+                            max: 100,
+                            stepSize: 10
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
