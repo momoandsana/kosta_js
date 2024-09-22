@@ -3,61 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radar Chart Example</title>
+    <title>Document</title>
 </head>
 <body>
     <div>
-        <canvas id="myChart"></canvas> <!-- 차트가 그려질 캔버스 요소 -->
-    </div>
+        <canvas id="myChart"></canvas>
+      </div>
       
-    <!-- Chart.js 라이브러리 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       
-    <script>
+      <script>
         const ctx = document.getElementById('myChart');
-
-        // Radar Chart 구성
+    //   type에는 bar, line, radar, doughut, polarArea 가 가능하다
         new Chart(ctx, {
-            type: 'radar',  // 차트 유형을 'radar'로 설정
-            data: {
-                labels: ['Running', 'Swimming', 'Eating', 'Cycling'],  // 각 축의 레이블
-                datasets: [{
-                    label: 'Person A',  // 첫 번째 데이터 세트 이름
-                    data: [20, 10, 4, 2],  // 각 축에 대응되는 값
-                    borderColor: 'rgba(255, 99, 132, 1)',  // 선 색상
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',  // 선 아래 채우기 색상
-                    borderWidth: 2  // 선 두께
-                }, {
-                    label: 'Person B',  // 두 번째 데이터 세트 이름
-                    data: [5, 12, 8, 6],  // 각 축에 대응되는 값
-                    borderColor: 'rgba(54, 162, 235, 1)',  // 선 색상
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',  // 선 아래 채우기 색상
-                    borderWidth: 2  // 선 두께
-                }]
-            },
-            options: {
-                elements: {
-                    line: {
-                        borderWidth: 3  // 선의 기본 두께
-                    }
-                },
-                scales: {
-                    r: {  // Radar 차트의 스케일 옵션
-                        angleLines: {
-                            display: true  // 방사형 축의 각도선 표시 여부
-                        },
-                        suggestedMin: 0,  // 최소값 설정
-                        suggestedMax: 25  // 최대값 설정
-                    }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Activity Comparison'  // 차트 제목
-                    }
-                }
+          type: 'polarArea',
+          data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+              label: '# of Votes',
+              data: [6, 7, 3, 5, 4, 3],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
             }
+          }
         });
-    </script>
+      </script>
+      
 </body>
 </html>
